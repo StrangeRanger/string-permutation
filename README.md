@@ -12,7 +12,7 @@ While this isn't a huge project, there are a lot of little things that might nee
 
 ### Requirements
 
-* `python 3.5` - `3.7`
+* `python 3.5` - `3.8`
 * `colorama`
   * Only required on Windows
 * `tqdm`
