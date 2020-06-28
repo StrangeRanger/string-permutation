@@ -1,4 +1,4 @@
-# String Permutation                                  1 ↵  4460  14:23:20
+# String Permutation
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
