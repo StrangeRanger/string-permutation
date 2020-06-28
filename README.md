@@ -13,11 +13,16 @@ While this isn't a huge project, there are a lot of little things that might nee
 ### Requirements
 
 * `python 3.5` - `3.7`
-* `colorama` via pip
+* `colorama`
   * Only required on Windows
-* `tqdm` via pip
+* `tqdm`
   * Optional, but highly recommended as the built in functions slows the program drastically
 
 ### Installing Dependencies
 
 To install the dependencies, execute the following command: `python3 -m pip install -r requirements.txt`
+
+Installed dependencies are:
+
+* colorama
+* tqdm
