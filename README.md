@@ -5,8 +5,10 @@
 This script takes a word or a string of character that is given by the user and creates every possible permutation   
 out of that word/string                                                                                              
                                                                                                                                          
-                                                                                                                     
 ## Requirements
 
-* Python 3.x                                                                                                         
-* colorama (only needed if script is being executed on a Windows system)  
+* `python 3.5` - `3.7`                                                                                                        
+* `colorama` via pip
+  * Only required on Windows 
+* `tqdm` via pip
+  * Optional, but highly recommended as the built in functions slows the program drastically
