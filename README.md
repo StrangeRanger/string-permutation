@@ -1,12 +1,10 @@
 # String Permutation
 
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-
 This project is designed to take a given word or string of characters and create every single permutation
 
 ## Docs
 
-While this isn't a huge project, there are a lot of little things that might need explaining and would be good to know. Currently, the docs are under construction, but can be found [here](https://github.com/StrangeRanger/string-permutation/wiki/temp).
+While this isn't a huge project, there are a few things that might need explaining and would be good to know. [Click here](https://github.com/StrangeRanger/string-permutation/wiki/temp) to better understand how the program works.
 
 ## Getting Started
 
