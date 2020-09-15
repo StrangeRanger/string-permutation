@@ -1,5 +1,8 @@
 # String Permutation
 
+[![GPLv2 license](https://img.shields.io/badge/License-GPLv2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+![Platform](https://img.shields.io/badge/platform-macos|linux|windows-lightgrey)
+
 This project is designed to take a given word or string of characters and create every single permutation
 
 ## Docs
