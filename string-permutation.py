@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 
-##########################################################################################
+################################################################################
 #
 # [ Imports ] and class creation
 #
-##########################################################################################
+################################################################################
 
 from itertools import permutations, product
 from os import linesep, stat, remove, path, rename
@@ -18,11 +18,11 @@ class RenameFile(Exception):
     pass
 
 
-##########################################################################################
+################################################################################
 #
 # [ Prepping ]
 #
-##########################################################################################
+################################################################################
 
 # Tries to import init from colorama to allow color output on Windows based systems
 if system() == "Windows":
@@ -36,11 +36,11 @@ if system() == "Windows":
               "-----------------------------------------------------------------------------------------------\n")
 
 
-##########################################################################################
+################################################################################
 #
 # Global [ variables ]
 #
-##########################################################################################
+################################################################################
 
 red = "\033[1;31m"
 cyan = "\033[0;36m"
@@ -48,14 +48,14 @@ green = "\033[0;32m"
 defclr = "\033[0m"
 
 
-##########################################################################################
+################################################################################
 #
 # [ Functions ]
 #
-##########################################################################################
+################################################################################
 
-# TODO: Find a better way of doing signal_handler() and clean_exit() so that there isn't
-#  so much repeating code
+# TODO: Find a better way of doing signal_handler() and clean_exit() so that
+#   there isn't so much repeating code
 
 def signal_handler(signal, frame):
     """Handles SIGINT and SIGTSTP signals, and cleanly exits program"""
@@ -101,9 +101,9 @@ def clean_exit():
 
 def progress(count, total, status=""):
     """
-    Displays a progress bar when permutations are to be saved to a file (this is the
-    alternative to using tqdm, but also causes the program to work much slower than with
-    tqdm)
+    Displays a progress bar when permutations are to be saved to a file (this
+    is the alternative to using tqdm, but also causes the program to work much
+    slower than with tqdm)
 
     Original code
     -------------
@@ -127,7 +127,8 @@ def progress(count, total, status=""):
 
 def factorial(n):
     """
-    Factorial function that allows for both 'n!' and 'n!/(n-r)!', instead of just 'n!'
+    Factorial function that allows for both 'n!' and 'n!/(n-r)!', instead of
+    just 'n!'
 
     Parameters
     ----------
@@ -143,12 +144,14 @@ def factorial(n):
 
 def convert_size(byte_size, byte_conversion_size, os, suffix="B"):
     """
-    Converts file sizes from bytes to easy/human readable format (1024 bytes --> 1KiB)
+    Converts file sizes from bytes to easy/human readable format (1024 bytes
+    --> 1KiB)
 
     Parameters
     ----------
         byte_size:              Size of file in bytes
-        byte_conversion_size:   The number of [unit type] to make a [unit type] (1000B to make 1KB  OR  1024B to make 1KiB)
+        byte_conversion_size:   The number of [unit type] to make a [unit type]
+                                (1000B to make 1KB  OR  1024B to make 1KiB)
         os:                     Operating System (1 = Windows; 0 = other)
         suffix:                 The suffix (bytes) attached to the end of each unit
     """
@@ -173,8 +176,8 @@ def convert_size(byte_size, byte_conversion_size, os, suffix="B"):
 
 def main(permutation_equation):
     """
-    Performs the permutations, displays either the size of 'file_name' or the total number
-    of permutations, etc.
+    Performs the permutations, displays either the size of 'file_name' or the
+    total number of permutations, etc.
 
     Parameters
     ----------
@@ -182,10 +185,10 @@ def main(permutation_equation):
     """
     # If permutations are being printed to the screen
     if save_or_display == 1:
-        print("The total number of permutations that will be printed to the screen is "
-              "{}. ".format(permutation_equation), end="")
+        print("The total number of permutations that will be printed to the " 
+              "screen is {}. ".format(permutation_equation), end="")
         while True:
-            response = str(input("Would you like to continue? [y|n] ").lower())
+            response = str(input("Would you like to continue? [y/n] ").lower())
             if response in ("y", "yes"):
                 # Performs and displays permutations to the screen
                 for i in execution:
@@ -210,7 +213,7 @@ def main(permutation_equation):
                   .format(file_name, convert_size(file_size, 1000, 0)), end="")
 
         while True:
-            response = str(input("Would you like to continue? [y|n] ").lower())
+            response = str(input("Would you like to continue? [y/n] ").lower())
             if response in ("y", "yes"):
                 # Tries to perform permutations and provides a progress bar using tqdm
                 try:
@@ -245,36 +248,36 @@ def main(permutation_equation):
                 continue
 
 
-##########################################################################################
+################################################################################
 #
 # Initializing signal handlers
 #
-##########################################################################################
+################################################################################
 
 signal.signal(signal.SIGINT, signal_handler)
 signal.signal(signal.SIGTSTP, signal_handler)
 
 
-##########################################################################################
+################################################################################
 #
 # [ Pre-main ]
 #
-# The main user input section that gathers all the required information on how to perform
-# the permutations
+# The main user input section that gathers all the required information on how
+# to perform the permutations
 #
-##########################################################################################
+################################################################################
 
 while True:
     try:
         permutation_type = int(input("What type of permutation do you want to perform? "
-                                     "[1|2]\n1) Permutation with partial or no repetition"
+                                     "[1/2]\n1) Permutation with partial or no repetition"
                                      "\n2) Permutation with repetition\n"))
         if permutation_type in (1, 2):
             print("")  # C.1.
             break
         else:
-            print("{}Invalid number: only numbers '1' and '2' are accepted as input{}"
-                  .format(red, defclr))
+            print("{}Invalid number: only numbers '1' and '2' are accepted as "
+                  "input{}".format(red, defclr))
             continue
     # B.1. If the user inputs anything other than an integer
     except ValueError:
@@ -283,7 +286,7 @@ while True:
 
 while True:
     try:
-        save_or_display = int(input("Would you like the permutations to be: [1|2]\n1) "
+        save_or_display = int(input("Would you like the permutations to be: [1/2]\n1) "
                                     "displayed on the screen\n2) saved to a file\n"))
         # If permutations are being printed to the screen
         if save_or_display == 1:
@@ -293,8 +296,9 @@ while True:
         elif save_or_display == 2:
             while True:
                 try:
-                    # 'strip(" ")' prevents blank/empty file names, and removes spaces
-                    # from being at the beginning or end of 'file_name' when created
+                    # 'strip(" ")' prevents blank/empty file names, and removes
+                    #   spaces from being at the beginning or end of 'file_name'
+                    #   when created
                     file_name = str(input("Enter the name of the file that the "
                                           "permutations will be saved to: ").strip(" "))
 
@@ -309,7 +313,7 @@ while True:
                         while True:
                             try:
                                 print("{}'{}' already exists{}".format(cyan, file_name, defclr))
-                                option = int(input("Would you like to: [1|2|3]\n1) choose"
+                                option = int(input("Would you like to: [1/2/3]\n1) choose"
                                                    " a different file name\n2) overwrite "
                                                    "file\n3) backup and overwrite file "
                                                    "(recommended over option 2)\n4) stop "
@@ -323,8 +327,8 @@ while True:
                                 elif option == 3:
                                     print("Backing up '{}'...".format(file_name))
                                     # Instead of copying the file, it is renamed with
-                                    # '.bak' appended to the end, to prevent any potential
-                                    # "data" loss with shutil library
+                                    #   '.bak' appended to the end, to prevent any
+                                    #   potential "data" loss with the shutil library
                                     rename(file_name, file_name + ".bak")
                                     print("Overwriting '{}'...\n".format(file_name))
                                     break
@@ -342,19 +346,20 @@ while True:
                         print("Creating '{}'...\n".format(file_name))
                         break
 
-                # Occurs when users choose option 2 (to choose a different file name)
+                # Occurs when users choose option 2 (to choose a different
+                #   file name)
                 except RenameFile:
                     continue
                 break
 
-            # 'newline=""' prevents an extra blank line from appearing in 'file_name' when
-            # the permutations are being added to the file (Note: the extra blank lines
-            # only occur when ran on Windows)
+            # 'newline=""' prevents an extra blank line from appearing in 'file_name'
+            #   when the permutations are being added to the file (Note: the extra
+            #   blank lines only occur when ran on Windows)
             write_file = open(file_name, "w", newline="")
             break
         else:
-            print("{}Invalid number: only numbers '1' and '2' are accepted as input{}"
-                  .format(red, defclr))
+            print("{}Invalid number: only numbers '1' and '2' are accepted as "
+                  "input{}".format(red, defclr))
             continue
     # B.1.
     except ValueError:
@@ -374,17 +379,17 @@ while True:
 
 # If permutation type == permutation with partial/no repetition
 if permutation_type == 1:
-    # Identifies if 'string' has duplicate characters, and if it does, the user is given
-    # options on how to continue
+    # Identifies if 'string' has duplicate characters, and if it does, the user
+    # is given options on how to continue
     for k, v in counter_string.items():
         if v >= 2:
-            print("{}Your input string has duplicate characters, which will result in "
-                  "duplicate permutations{}".format(cyan, defclr))
+            print("{}Your input string has duplicate characters, which will result "
+                  "in duplicate permutations{}".format(cyan, defclr))
             while True:
                 try:
-                    option = int(input("Would you like to: [1|2|3]\n1) continue with "
-                                       "duplicate outputs\n2) remove duplicate characters"
-                                       " from string\n3) stop and exit\n"))
+                    option = int(input("Would you like to: [1/2/3]\n1) continue with "
+                                       "duplicate outputs\n2) remove duplicate"
+                                       "characters from string\n3) stop and exit\n"))
                     if option == 1:
                         break
                     elif option == 2:
@@ -407,7 +412,7 @@ if permutation_type == 1:
 # If permutation type == permutation with repetition
 else:
     # Identifies if 'string' has duplicate characters, and if it does, they are
-    # immediately removed
+    #   immediately removed
     for k, v in counter_string.items():
         if v >= 2:
             string = "".join(set(string))
@@ -435,14 +440,14 @@ while True:
         continue
 
 
-##########################################################################################
+################################################################################
 #
 # [ Main ]
 #
-##########################################################################################
+################################################################################
 
 # Determines what permutation type is being used, then executes main(permutation_equation)
-# (the main function that runs the permutations)
+#   (the main function that runs the permutations)
 if permutation_type == 1:
     execution = permutations(string, output_string_length)
     main(factorial(len(string)))
