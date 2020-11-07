@@ -55,7 +55,7 @@ defclr = "\033[0m"
 ################################################################################
 
 # TODO: Find a better way of doing signal_handler() and clean_exit() so that
-#   there isn't so much repeating code
+# there isn't so much repeating code
 
 def signal_handler(signal, frame):
     """Handles SIGINT and SIGTSTP signals, and cleanly exits program"""
@@ -297,8 +297,8 @@ while True:
             while True:
                 try:
                     # 'strip(" ")' prevents blank/empty file names, and removes
-                    #   spaces from being at the beginning or end of 'file_name'
-                    #   when created
+                    # spaces from being at the beginning or end of 'file_name'
+                    # when created
                     file_name = str(input("Enter the name of the file that the "
                                           "permutations will be saved to: ").strip(" "))
 
@@ -353,8 +353,8 @@ while True:
                 break
 
             # 'newline=""' prevents an extra blank line from appearing in 'file_name'
-            #   when the permutations are being added to the file (Note: the extra
-            #   blank lines only occur when ran on Windows)
+            # when the permutations are being added to the file (Note: the extra
+            # blank lines only occur when ran on Windows)
             write_file = open(file_name, "w", newline="")
             break
         else:
@@ -412,7 +412,7 @@ if permutation_type == 1:
 # If permutation type == permutation with repetition
 else:
     # Identifies if 'string' has duplicate characters, and if it does, they are
-    #   immediately removed
+    # immediately removed
     for k, v in counter_string.items():
         if v >= 2:
             string = "".join(set(string))
@@ -447,7 +447,7 @@ while True:
 ################################################################################
 
 # Determines what permutation type is being used, then executes main(permutation_equation)
-#   (the main function that runs the permutations)
+# (the main function that runs the permutations)
 if permutation_type == 1:
     execution = permutations(string, output_string_length)
     main(factorial(len(string)))
