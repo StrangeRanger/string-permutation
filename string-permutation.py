@@ -42,10 +42,9 @@ if system() == "Windows":
 #
 ################################################################################
 
-red = "\033[1;31m"
-cyan = "\033[0;36m"
-green = "\033[0;32m"
-defclr = "\033[0m"
+RED = "\033[1;31m"
+CYAN = "\033[0;36m"
+DEFCLR = "\033[0m"
 
 
 ################################################################################
@@ -197,7 +196,7 @@ def main(permutation_equation):
             elif response in ("n", "no"):
                 clean_exit()
             else:
-                print("{}Invalid input{}".format(red, defclr))
+                print("{}Invalid input{}".format(RED, DEFCLR))
                 continue
     # If permutations are to be saved to a file
     else:
@@ -244,7 +243,7 @@ def main(permutation_equation):
             elif response in ("n", "no"):
                 clean_exit()
             else:
-                print("{}Invalid input{}".format(red, defclr))
+                print("{}Invalid input{}".format(RED, DEFCLR))
                 continue
 
 
@@ -277,11 +276,11 @@ while True:
             break
         else:
             print("{}Invalid number: only numbers '1' and '2' are accepted as "
-                  "input{}".format(red, defclr))
+                  "input{}".format(RED, DEFCLR))
             continue
     # B.1. If the user inputs anything other than an integer
     except ValueError:
-        print("{}Invalid input: only numbers are accepted as input{}".format(red, defclr))
+        print("{}Invalid input: only numbers are accepted as input{}".format(RED, DEFCLR))
         continue
 
 while True:
@@ -305,14 +304,14 @@ while True:
                     # If input is left blank
                     if not file_name:
                         print("{}Invalid file name: blank file names are not accepted{}"
-                              .format(red, defclr))
+                              .format(RED, DEFCLR))
                         continue
 
                     # If 'file_name' already exists
                     if path.exists(file_name):
                         while True:
                             try:
-                                print("{}'{}' already exists{}".format(cyan, file_name, defclr))
+                                print("{}'{}' already exists{}".format(CYAN, file_name, DEFCLR))
                                 option = int(input("Would you like to: [1/2/3]\n1) choose"
                                                    " a different file name\n2) overwrite "
                                                    "file\n3) backup and overwrite file "
@@ -336,11 +335,11 @@ while True:
                                     clean_exit()
                                 else:
                                     print("{}Invalid number: only numbers '1', '2', and '"
-                                          "3' are accepted as input{}".format(red, defclr))
+                                          "3' are accepted as input{}".format(RED, DEFCLR))
                             # B.1.
                             except ValueError:
                                 print("{}Invalid input: only numbers are accepted as "
-                                      "input{}".format(red, defclr))
+                                      "input{}".format(RED, DEFCLR))
                                 continue
                     else:
                         print("Creating '{}'...\n".format(file_name))
@@ -359,11 +358,11 @@ while True:
             break
         else:
             print("{}Invalid number: only numbers '1' and '2' are accepted as "
-                  "input{}".format(red, defclr))
+                  "input{}".format(RED, DEFCLR))
             continue
     # B.1.
     except ValueError:
-        print("{}Invalid input: only numbers are accepted as input{}".format(red, defclr))
+        print("{}Invalid input: only numbers are accepted as input{}".format(RED, DEFCLR))
         continue
 
 while True:
@@ -372,7 +371,7 @@ while True:
     counter_string = Counter(string)
     # If variable contains characters other than spaces
     if string.strip(" ") == "":
-        print("{}Invalid input: blank/empty input is not accepted{}".format(red, defclr))
+        print("{}Invalid input: blank/empty input is not accepted{}".format(RED, DEFCLR))
         continue
     else:
         break
@@ -384,7 +383,7 @@ if permutation_type == 1:
     for k, v in counter_string.items():
         if v >= 2:
             print("{}Your input string has duplicate characters, which will result "
-                  "in duplicate permutations{}".format(cyan, defclr))
+                  "in duplicate permutations{}".format(CYAN, DEFCLR))
             while True:
                 try:
                     option = int(input("Would you like to: [1/2/3]\n1) continue with "
@@ -401,11 +400,11 @@ if permutation_type == 1:
                         clean_exit()
                     else:
                         print("{}Invalid number: only numbers '1', '2', and '3' are "
-                              "accepted as input{}".format(red, defclr))
+                              "accepted as input{}".format(RED, DEFCLR))
                         continue
                 except ValueError:
                     print("{}Invalid input: only numbers are accepted as input{}"
-                          .format(red, defclr))
+                          .format(RED, DEFCLR))
                     continue
             print("")
             break
@@ -426,17 +425,17 @@ while True:
                                          "permutation will contain (i.e. 6 = xxxxxx): "))
         if output_string_length <= 0:
             print("{}Invalid number: only numbers greater than 0 are accepted{}"
-                  .format(red, defclr))
+                  .format(RED, DEFCLR))
         elif permutation_type == 1 and output_string_length > len(string):
             print("{}Invalid number: numbers greater than the length of the input string "
                   "({} {} long) are not accepted{}"
-                  .format(red, len(string), "characters" if len(string) >= 2 else "character", defclr))
+                  .format(RED, len(string), "characters" if len(string) >= 2 else "character", DEFCLR))
         else:
             print("")  # C.1.
             break
     # B.1.
     except ValueError:
-        print("{}Invalid input: only numbers are accepted as input{}".format(red, defclr))
+        print("{}Invalid input: only numbers are accepted as input{}".format(RED, DEFCLR))
         continue
 
 
