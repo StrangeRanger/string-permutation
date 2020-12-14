@@ -2,13 +2,13 @@
 
 ################################################################################
 #
-# [ Imports ] and class creation
+# [ Imports and Class creation ]
 #
 ################################################################################
 
 from itertools import permutations, product
 from os import linesep, stat, remove, path, rename
-from sys import exit, stdout
+from sys import exit
 from collections import Counter
 from platform import system
 import signal
@@ -20,25 +20,7 @@ class RenameFile(Exception):
 
 ################################################################################
 #
-# [ Prepping ]
-#
-################################################################################
-
-# Tries to import init from colorama to allow color output on Windows based systems
-if system() == "Windows":
-    try:
-        from colorama import init
-
-        init()
-    except ModuleNotFoundError:
-        print("-----------------------------------------------------------------------------------------------\n"
-              "Colorama has not been installed, which will result in ANSI text appearing in some of the output\n"
-              "-----------------------------------------------------------------------------------------------\n")
-
-
-################################################################################
-#
-# Global [ variables ]
+# [ Variables ]
 #
 ################################################################################
 
@@ -49,80 +31,78 @@ DEFCLR = "\033[0m"
 
 ################################################################################
 #
+# [ Pip imports ]
+#
+################################################################################
+
+# Tries to import init from colorama to allow color output on Windows based
+# systems
+if system() == "Windows":
+    try:
+        from colorama import init
+
+        init()
+    except ModuleNotFoundError:
+        print(
+            "-----------------------------------------------------------------------------------------------\n"
+            "Colorama has not been installed, which will result in ANSI text appearing in some of the output\n"
+            "-----------------------------------------------------------------------------------------------\n")
+
+try:
+    from tqdm import tqdm
+except ModuleNotFoundError:
+    print("{}Failed to import tqdm. Make sure that it's installed before executing"
+          " this script again.{}".format(RED, DEFCLR))
+    exit(1)
+
+
+################################################################################
+#
 # [ Functions ]
 #
 ################################################################################
 
-# TODO: Find a better way of doing signal_handler() and clean_exit() so that
-# there isn't so much repeating code
+def clean_exit(signal_handler_used=False):
+    """
+    Cleanly exits program. Also used by signal_handler().
+
+    Parameters
+    ----------
+    signal_handler_used : bool
+        True when called by signal_handler()
+
+    Returns
+    -------
+    None
+    """
+    if signal_handler_used:
+        print("\n\nProgram forcefully stopped")
+    else:
+        print("")  # Adds new line for spacing
+
+    try:
+        # If 'file_name' exists and contains no data
+        if stat(file_name).st_size == 0:
+            print("Cleaning up...")
+            print("  Removing '{}'...".format(file_name))
+            remove(file_name)
+    except NameError:
+        pass
+    except FileNotFoundError:
+        pass
+
+    print("Exiting...")
+    exit(0)
+
 
 def signal_handler(signal, frame):
     """Handles SIGINT and SIGTSTP signals, and cleanly exits program"""
-    print("\n\nProgram forcefully stopped")
-
-    try:
-        # D.1. If 'file_name' exists and contains no data
-        if stat(file_name).st_size == 0:
-            print("Cleaning up...")
-            print("  Removing '{}'...".format(file_name))
-            remove(file_name)
-    except NameError:
-        pass
-    except FileNotFoundError:
-        pass
-
-    print("Exiting...")
-    exit(0)
+    clean_exit(signal_handler_used=True)
 
 
-def clean_exit():
-    """Cleanly exits program"""
-    print("")  # Adds new line for spacing
-
-    try:
-        # D.1.
-        if stat(file_name).st_size == 0:
-            print("Cleaning up...")
-            print("  Removing '{}'...".format(file_name))
-            remove(file_name)
-    except NameError:
-        pass
-    except FileNotFoundError:
-        pass
-
-    print("Exiting...")
-    exit(0)
-
-
-################################################################################
-# Functions used explicitly by 'main(permutation_equation)'
-################################################################################
-
-def progress(count, total, status=""):
-    """
-    Displays a progress bar when permutations are to be saved to a file (this
-    is the alternative to using tqdm, but also causes the program to work much
-    slower than with tqdm)
-
-    Original code
-    -------------
-    This functions is a semi-modified version of the code located here:
-    https://gist.github.com/vladignatyev/06860ec2040cb497f0f3
-
-    Parameter
-    ---------
-        count:   The number of permutations already completed
-        total:   Total number of permutation to be done
-        status:  Status phrase displayed within the progress bar
-    """
-    bar_len = 44
-    filled_len = int(round(bar_len * count / float(total)))
-    percents = round(100.0 * count / float(total), 1)
-    bar = "=" * filled_len + "-" * (bar_len - filled_len)
-
-    stdout.write("[{}] {}{} ...{}\r".format(bar, percents, "%", status))
-    stdout.flush()
-
+############################################################################
+# [ Functions used explicitly by 'main(permutation_equation)' ]
+############################################################################
 
 def factorial(n):
     """
@@ -131,7 +111,12 @@ def factorial(n):
 
     Parameters
     ----------
-        n: The number of characters in 'string'
+    n : int
+        The number of characters in 'string'
+
+    Returns
+    -------
+    int
     """
     stop = len(string) - output_string_length
 
@@ -141,18 +126,25 @@ def factorial(n):
         return n * factorial(n - 1)
 
 
-def convert_size(byte_size, byte_conversion_size, os, suffix="B"):
+def convert_size(byte_size, byte_conv_size, os, suffix="B"):
     """
     Converts file sizes from bytes to easy/human readable format (1024 bytes
     --> 1KiB)
 
     Parameters
     ----------
-        byte_size:              Size of file in bytes
-        byte_conversion_size:   The number of [unit type] to make a [unit type]
-                                (1000B to make 1KB  OR  1024B to make 1KiB)
-        os:                     Operating System (1 = Windows; 0 = other)
-        suffix:                 The suffix (bytes) attached to the end of each unit
+    byte_size : int
+        Size of file in bytes
+    byte_conv_size : int
+        The number of [unit type] to make a [unit type]
+    os : int
+        Operating System (1 = Windows; 0 = Other)
+    suffix : str
+        The suffix (bytes) attached to the end of each unit
+
+    Returns
+    -------
+    str
     """
     # If OS is Windows
     if os == 1:
@@ -162,16 +154,16 @@ def convert_size(byte_size, byte_conversion_size, os, suffix="B"):
         units = ["", "K", "M", "G", "T", "P", "E", "Z"]
 
     for unit in units:
-        if byte_size < byte_conversion_size:
+        if byte_size < byte_conv_size:
             return "{}{}{}".format(round(byte_size, 2), unit, suffix)
-        byte_size /= byte_conversion_size
+        byte_size /= byte_conv_size
 
     return "{}{}{}".format(byte_size, "Y", suffix)
 
 
-################################################################################
-# Main function
-################################################################################
+############################################################################
+# [ Main function ]
+############################################################################
 
 def main(permutation_equation):
     """
@@ -180,11 +172,16 @@ def main(permutation_equation):
 
     Parameters
     ----------
-        permutation_equation: The equation used to get the total number of permutations
+    permutation_equation : int
+        The equation used to get the total number of permutations
+
+    Returns
+    -------
+    None
     """
     # If permutations are being printed to the screen
     if save_or_display == 1:
-        print("The total number of permutations that will be printed to the " 
+        print("The total number of permutations that will be printed to the "
               "screen is {}. ".format(permutation_equation), end="")
         while True:
             response = str(input("Would you like to continue? [y/n] ").lower())
@@ -216,7 +213,6 @@ def main(permutation_equation):
             if response in ("y", "yes"):
                 # Tries to perform permutations and provides a progress bar using tqdm
                 try:
-                    from tqdm import tqdm
                     print("\n")  # C.1. Blank line between next user input prompt
 
                     # A.1. Performs permutations and saves them to 'file_name'
@@ -228,18 +224,6 @@ def main(permutation_equation):
                 # Occurs usually when using CTRL + C with non-tqdm progress bar
                 except RuntimeError:
                     clean_exit()
-                # Tries to perform permutations and provides a non-tqdm progress bar
-                except ModuleNotFoundError:
-                    permutation_progress = 1
-                    print("\n")  # C.1.
-
-                    # A.1.
-                    for i in execution:
-                        progress(permutation_progress, permutation_equation,
-                                 status="Performing permutations")
-                        write_file.write("".join(i) + linesep)
-                        permutation_progress += 1
-                    break
             elif response in ("n", "no"):
                 clean_exit()
             else:
@@ -249,7 +233,7 @@ def main(permutation_equation):
 
 ################################################################################
 #
-# Initializing signal handlers
+# [ Initializing signal handlers ]
 #
 ################################################################################
 
@@ -259,7 +243,7 @@ signal.signal(signal.SIGTSTP, signal_handler)
 
 ################################################################################
 #
-# [ Pre-main ]
+# [ Prepping ]
 #
 # The main user input section that gathers all the required information on how
 # to perform the permutations
@@ -429,7 +413,8 @@ while True:
         elif permutation_type == 1 and output_string_length > len(string):
             print("{}Invalid number: numbers greater than the length of the input string "
                   "({} {} long) are not accepted{}"
-                  .format(RED, len(string), "characters" if len(string) >= 2 else "character", DEFCLR))
+                  .format(RED, len(string), "characters" if len(string) >= 2 else "character",
+                          DEFCLR))
         else:
             print("")  # C.1.
             break
@@ -448,7 +433,7 @@ while True:
 # Determines what permutation type is being used, then executes main(permutation_equation)
 # (the main function that runs the permutations)
 if permutation_type == 1:
-    execution = permutations(string, output_string_length)
+    execution = permutations(string, int(output_string_length))
     main(factorial(len(string)))
 else:
     execution = product(string, repeat=output_string_length)
