@@ -13,10 +13,9 @@ While this isn't a huge project, there are a few things that might need explaini
 ### Requirements
 
 * `python 3.5` - `3.9`
+* `tqdm`
 * `colorama`
   * Only required on Windows
-* `tqdm`
-  * Optional, but highly recommended as the built in functions slows the program drastically
 
 ### Installing Dependencies
 
