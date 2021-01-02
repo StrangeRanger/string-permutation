@@ -1,6 +1,6 @@
 # String Permutation
 
-![Platform](https://img.shields.io/badge/platform-macos|linux|windows-lightgrey)
+![Platform](https://img.shields.io/badge/platform-macOS|Linux|Windows-lightgrey)
 
 This project is designed to take a given word or string of characters and create every single permutation
 
