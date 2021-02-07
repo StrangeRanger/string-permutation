@@ -1,5 +1,6 @@
 # String Permutation
 
+[![GPLv2 license](https://img.shields.io/badge/License-GPLv2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 ![Repo Size](https://img.shields.io/github/repo-size/StrangeRanger/string-permutation)
 ![Platform](https://img.shields.io/badge/platform-macOS|Linux|Windows-lightgrey)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
@@ -12,18 +13,9 @@ While this isn't a huge project, there are a few things that might need explaini
 
 ## Getting Started
 
-### Requirements
-
-* `python 3.5` - `3.9`
-* `tqdm`
-* `colorama`
-  * Only required on Windows
-
 ### Installing Dependencies
 
-To install the dependencies, execute the following command: `python3 -m pip install -r requirements.txt`
-
-Installed dependencies are:
-
-* colorama
-* tqdm
+To install dependencies for Inspector, run either of the following commands: 
+- `python3 -m pip install -r requirements.txt` (installs globally)
+- `pipenv install -r requirements.txt` (installs locally via pipenv)
+    - pipenv must already be installed: `python3 -m pip install pipenv`
