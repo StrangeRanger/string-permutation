@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+"""This project is designed to take a given word or string of characters and create every possible permutation."""
+
+
 ################################################################################
 #
 # [ Imports and Class creation ]
@@ -35,12 +38,10 @@ DEFCLR = "\033[0m"
 #
 ################################################################################
 
-# Tries to import init from colorama to allow color output on Windows based
-# systems
+# Tries to import init from colorama to allow color output on Windows
 if system() == "Windows":
     try:
         from colorama import init
-
         init()
     except ModuleNotFoundError:
         print(
@@ -65,10 +66,9 @@ except ModuleNotFoundError:
 #
 ################################################################################
 
-
 def clean_exit(signal_handler_used=False):
     """
-    Cleanly exits program. Also used by signal_handler().
+    Exit program cleanly. Also used by signal_handler().
 
     Parameters
     ----------
@@ -100,7 +100,20 @@ def clean_exit(signal_handler_used=False):
 
 
 def signal_handler(signal, frame):
-    """Handles SIGINT and SIGTSTP signals, and cleanly exits program"""
+    """
+    Handle SIGINT and SIGTSTP signals, and cleanly exits program.
+
+    Parameters
+    ----------
+    signal : Any
+        Signal number
+    frame : Any
+        Interrupted stack frame
+
+    Returns
+    -------
+    None
+    """
     clean_exit(signal_handler_used=True)
 
 
@@ -108,11 +121,9 @@ def signal_handler(signal, frame):
 # [ Functions used explicitly by 'main(permutation_equation)' ]
 ############################################################################
 
-
 def factorial(n):
     """
-    Factorial function that allows for both 'n!' and 'n!/(n-r)!', instead of
-    just 'n!'
+    Factorial function that allows for both 'n!' and 'n!/(n-r)!', instead of just 'n!'.
 
     Parameters
     ----------
@@ -133,8 +144,7 @@ def factorial(n):
 
 def convert_size(byte_size, byte_conv_size, os, suffix="B"):
     """
-    Converts file sizes from bytes to easy/human readable format (1024 bytes
-    --> 1KiB)
+    Convert file sizes from bytes to easy/human readable format (1024 bytes --> 1KiB).
 
     Parameters
     ----------
@@ -173,8 +183,7 @@ def convert_size(byte_size, byte_conv_size, os, suffix="B"):
 
 def main(permutation_equation):
     """
-    Performs the permutations, displays either the size of 'file_name' or the
-    total number of permutations, etc.
+    Perform the permutations, displays either the size of 'file_name' or the total number of permutations, etc.
 
     Parameters
     ----------
