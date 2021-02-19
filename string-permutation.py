@@ -42,6 +42,7 @@ DEFCLR = "\033[0m"
 if system() == "Windows":
     try:
         from colorama import init
+
         init()
     except ModuleNotFoundError:
         print(
@@ -65,6 +66,7 @@ except ModuleNotFoundError:
 # [ Functions ]
 #
 ################################################################################
+
 
 def clean_exit(signal_handler_used=False):
     """
@@ -99,13 +101,13 @@ def clean_exit(signal_handler_used=False):
     exit(0)
 
 
-def signal_handler(signal, frame):
+def signal_handler(signal_num, frame):
     """
     Handle SIGINT and SIGTSTP signals, and cleanly exits program.
 
     Parameters
     ----------
-    signal : Any
+    signal_num : Any
         Signal number
     frame : Any
         Interrupted stack frame
@@ -121,6 +123,7 @@ def signal_handler(signal, frame):
 # [ Functions used explicitly by 'main(permutation_equation)' ]
 ############################################################################
 
+
 def factorial(n):
     """
     Factorial function that allows for both 'n!' and 'n!/(n-r)!', instead of just 'n!'.
@@ -135,7 +138,6 @@ def factorial(n):
     int
     """
     stop = len(string) - output_string_length
-
     if n == stop:
         return 1
     else:
