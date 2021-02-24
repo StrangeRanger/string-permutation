@@ -125,7 +125,7 @@ def factorial(n):
     :param n: The number of characters in 'string'
     :type n: int
     :return: Factorial function if n != stop else int
-    :rtype: Union[int, None]
+    :rtype: int
     """
     stop = len(string) - output_string_length
     if n == stop:
