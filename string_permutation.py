@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
-"""This project is designed to take a given word or string of characters and create every possible permutation."""
-
+"""
+This project is designed to take a given word or string of characters and create
+every possible permutation.
+"""
 
 ################################################################################
 #
@@ -18,6 +20,7 @@ import signal
 
 
 class RenameFile(Exception):
+    """Used to easily break while loop, to re-ask user to enter a filename"""
     pass
 
 
@@ -72,14 +75,10 @@ def clean_exit(signal_handler_used=False):
     """
     Exit program cleanly. Also used by signal_handler().
 
-    Parameters
-    ----------
-    signal_handler_used : bool
-        True when called by signal_handler()
-
-    Returns
-    -------
-    None
+    :param signal_handler_used: True when called by signal_handler()
+    (Default value = False)
+    :type signal_handler_used: bool
+    :return: None
     """
     if signal_handler_used:
         print("\n\nProgram forcefully stopped")
@@ -105,16 +104,11 @@ def signal_handler(signal_num, frame):
     """
     Handle SIGINT and SIGTSTP signals, and cleanly exits program.
 
-    Parameters
-    ----------
-    signal_num : Any
-        Signal number
-    frame : Any
-        Interrupted stack frame
-
-    Returns
-    -------
-    None
+    :param signal_num: Signal number
+    :type signal_num: Any
+    :param frame: Interrupted stack frame
+    :type frame: Any
+    :return: None
     """
     clean_exit(signal_handler_used=True)
 
@@ -128,14 +122,10 @@ def factorial(n):
     """
     Factorial function that allows for both 'n!' and 'n!/(n-r)!', instead of just 'n!'.
 
-    Parameters
-    ----------
-    n : int
-        The number of characters in 'string'
-
-    Returns
-    -------
-    int
+    :param n: The number of characters in 'string'
+    :type n: int
+    :return: Factorial function if n != stop else int
+    :rtype: Union[int, None]
     """
     stop = len(string) - output_string_length
     if n == stop:
@@ -148,20 +138,16 @@ def convert_size(byte_size, byte_conv_size, os, suffix="B"):
     """
     Convert file sizes from bytes to easy/human readable format (1024 bytes --> 1KiB).
 
-    Parameters
-    ----------
-    byte_size : int
-        Size of file in bytes
-    byte_conv_size : int
-        The number of [unit type] to make a [unit type]
-    os : int
-        Operating System (1 = Windows; 0 = Other)
-    suffix : str
-        The suffix (bytes) attached to the end of each unit
-
-    Returns
-    -------
-    str
+    :param byte_size: Size of file in bytes
+    :type byte_size: int
+    :param byte_conv_size: The number of [unit type] to make a [unit type]
+    :type byte_conv_size: int
+    :param os: Operating System (1 = Windows; 0 = Other)
+    :type os: int
+    :param suffix: The suffix (bytes) attached to the end of each unit (Default value = "B")
+    :type suffix: str
+    :return: Size of file in appropriate units
+    :rtype: str
     """
     # If OS is Windows
     if os == 1:
@@ -185,16 +171,12 @@ def convert_size(byte_size, byte_conv_size, os, suffix="B"):
 
 def main(permutation_equation):
     """
-    Perform the permutations, displays either the size of 'file_name' or the total number of permutations, etc.
+    Perform the permutations, displays either the size of 'file_name' or the total
+    number of permutations, etc.
 
-    Parameters
-    ----------
-    permutation_equation : int
-        The equation used to get the total number of permutations
-
-    Returns
-    -------
-    None
+    :param permutation_equation: The equation used to get the total number of permutations
+    :type permutation_equation: int
+    :return: None
     """
     # If permutations are being printed to the screen
     if save_or_display == 1:
@@ -365,8 +347,8 @@ while True:
                                 elif option == 3:
                                     print("Backing up '{}'...".format(file_name))
                                     # Instead of copying the file, it is renamed with
-                                    #   '.bak' appended to the end, to prevent any
-                                    #   potential "data" loss with the shutil library
+                                    # '.bak' appended to the end, to prevent any
+                                    # potential "data" loss with the shutil library
                                     rename(file_name, file_name + ".bak")
                                     print("Overwriting '{}'...\n".format(file_name))
                                     break
@@ -388,8 +370,6 @@ while True:
                         print("Creating '{}'...\n".format(file_name))
                         break
 
-                # Occurs when users choose option 2 (to choose a different
-                #   file name)
                 except RenameFile:
                     continue
                 break
