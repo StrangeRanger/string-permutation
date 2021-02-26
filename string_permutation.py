@@ -21,6 +21,7 @@ import signal
 
 class RenameFile(Exception):
     """Used to easily break while loop, to re-ask user to enter a filename"""
+
     pass
 
 
