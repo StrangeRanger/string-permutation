@@ -121,17 +121,18 @@ def signal_handler(signal_num, frame):
 
 def factorial(n):
     """
-    Factorial function that allows for both 'n!' and 'n!/(n-r)!', instead of just 'n!'.
+    Factorial function that allows for both 'n!' and 'n!/(n-r)!'.
 
     :param n: The number of characters in 'string'
     :type n: int
-    :return: Factorial function if n != stop else int
+    :return: The factorial product
     :rtype: int
     """
     stop = len(string) - output_string_length
     if n == stop:
         return 1
     else:
+        # 4 * 3 --> 3 * 2 --> 2 * 1
         return n * factorial(n - 1)
 
 
