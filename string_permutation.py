@@ -1,15 +1,11 @@
 #!/usr/bin/env python3
 
 """
-This project is designed to take a given word or string of characters and create
-every possible permutation.
+This project is designed to take a given word or string of characters and create every
+possible permutation.
 """
+####[ Imports ]#########################################################################
 
-################################################################################
-#
-# [ Imports and Class creation ]
-#
-################################################################################
 
 from itertools import permutations, product
 from os import linesep, stat, remove, path, rename
@@ -19,28 +15,28 @@ from platform import system
 import signal
 
 
+####[ Class creation ]##################################################################
+
+
 class RenameFile(Exception):
-    """Used to easily break while loop, to re-ask user to enter a filename"""
+    """Used to easily break while loop, to re-ask user to enter a filename."""
 
     pass
 
 
-################################################################################
-#
-# [ Variables ]
-#
-################################################################################
+####[ Variables ]#######################################################################
+
 
 RED = "\033[1;31m"
+"""Red output text."""
 CYAN = "\033[0;36m"
+"""Red output text."""
 DEFCLR = "\033[0m"
+"""Reset output text color."""
 
 
-################################################################################
-#
-# [ Pip imports ]
-#
-################################################################################
+####[ Pip imports ]#####################################################################
+
 
 # Tries to import init from colorama to allow color output on Windows
 if system() == "Windows":
@@ -65,21 +61,17 @@ except ModuleNotFoundError:
     exit(1)
 
 
-################################################################################
-#
-# [ Functions ]
-#
-################################################################################
+####[ Functions ]#######################################################################
+########[ General Functions ]###########################################################
 
 
 def clean_exit(signal_handler_used=False):
-    """
-    Exit program cleanly. Also used by signal_handler().
+    """Exit program cleanly. Also used by signal_handler().
 
-    :param signal_handler_used: True when called by signal_handler()
-    (Default value = False)
-    :type signal_handler_used: bool
-    :return: None
+    Parameters
+    ----------
+    signal_handler_used : bool, optional
+        True when called by signal_handler().
     """
     if signal_handler_used:
         print("\n\nProgram forcefully stopped")
@@ -102,54 +94,50 @@ def clean_exit(signal_handler_used=False):
 
 
 def signal_handler(signal_num, frame):
-    """
-    Handle SIGINT and SIGTSTP signals, and cleanly exits program.
+    """Handle SIGINT and SIGTSTP signals, and cleanly exits program.
 
-    :param signal_num: Signal number
-    :type signal_num: Any
-    :param frame: Interrupted stack frame
-    :type frame: Any
-    :return: None
+    Parameters
+    ----------
+    signal_num
+        Signal number.
+    frame
+        Interrupted stack frame.
     """
     clean_exit(signal_handler_used=True)
 
 
-############################################################################
-# [ Functions used explicitly by 'main(permutation_equation)' ]
-############################################################################
+########[ Functions used explicitly by 'main(permutation_equation)' ]###################
 
 
-def factorial(n):
+def factorial(n, stop):
+    """Factorial function that allows for both 'n!' and 'n!/(n-r)!'.
+
+    Parameters
+    ----------
+    n : int
+        The number of characters in 'string'.
+    stop : int
+        The number used to stop factorial when n is equivalent.
     """
-    Factorial function that allows for both 'n!' and 'n!/(n-r)!'.
-
-    :param n: The number of characters in 'string'
-    :type n: int
-    :return: The factorial product
-    :rtype: int
-    """
-    stop = len(string) - output_string_length
     if n == stop:
         return 1
     else:
-        # 4 * 3 --> 3 * 2 --> 2 * 1
-        return n * factorial(n - 1)
+        return n * factorial(n - 1, stop)
 
 
 def convert_size(byte_size, byte_conv_size, os, suffix="B"):
-    """
-    Convert file sizes from bytes to easy/human readable format (1024 bytes --> 1KiB).
+    """Convert file sizes from bytes to easy/human readable format (1024 bytes --> 1KiB).
 
-    :param byte_size: Size of file in bytes
-    :type byte_size: int
-    :param byte_conv_size: The number of [unit type] to make a [unit type]
-    :type byte_conv_size: int
-    :param os: Operating System (1 = Windows; 0 = Other)
-    :type os: int
-    :param suffix: The suffix (bytes) attached to the end of each unit (Default value = "B")
-    :type suffix: str
-    :return: Size of file in appropriate units
-    :rtype: str
+    Parameters
+    ----------
+    byte_size : int
+        Size of file in bytes.
+    byte_conv_size : int
+        The number of [unit type] to make a [unit type].
+    os : int
+        Operating System (1 = Windows; 0 = Other).
+    suffix : str, optional
+        The suffix (bytes) attached to the end of each unit.
     """
     # If OS is Windows
     if os == 1:
@@ -166,19 +154,17 @@ def convert_size(byte_size, byte_conv_size, os, suffix="B"):
     return "{}{}{}".format(byte_size, "Y", suffix)
 
 
-############################################################################
-# [ Main function ]
-############################################################################
+########[ Main function ]###############################################################
 
 
 def main(permutation_equation):
-    """
-    Perform the permutations, displays either the size of 'file_name' or the total
+    """Perform the permutations, displays either the size of 'file_name' or the total
     number of permutations, etc.
 
-    :param permutation_equation: The equation used to get the total number of permutations
-    :type permutation_equation: int
-    :return: None
+    Parameters
+    ----------
+    permutation_equation : int
+        The equation used to get the total number of permutations.
     """
     # If permutations are being printed to the screen
     if save_or_display == 1:
@@ -243,24 +229,17 @@ def main(permutation_equation):
                 continue
 
 
-################################################################################
-#
-# [ Initializing signal handlers ]
-#
-################################################################################
+####[ Initializing signal handlers ]####################################################
+
 
 signal.signal(signal.SIGINT, signal_handler)
 signal.signal(signal.SIGTSTP, signal_handler)
 
 
-################################################################################
-#
-# [ Prepping ]
-#
-# The main user input section that gathers all the required information on how
-# to perform the permutations
-#
-################################################################################
+####[ Prepping ]########################################################################
+#### The main user input section that gathers all the required information on
+#### how to perform the permutations.
+
 
 while True:
     try:
@@ -501,17 +480,14 @@ while True:
         continue
 
 
-################################################################################
-#
-# [ Main ]
-#
-################################################################################
+####[ Main ]############################################################################
+
 
 # Determines what permutation type is being used, then executes main(permutation_equation)
 # (the main function that runs the permutations)
 if permutation_type == 1:
     execution = permutations(string, int(output_string_length))
-    main(factorial(len(string)))
+    main(factorial(len(string), len(string) - output_string_length))
 else:
     execution = product(string, repeat=output_string_length)
     main(len(string) ** output_string_length)
