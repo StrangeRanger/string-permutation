@@ -26,6 +26,6 @@ All you need to do is download the repository. There are no binaries or anything
 
 ## Usage
 
-To execute the program, simply execute the following command:
+To execute the program, simply use the following command:
 
 `python3 string-permutation`
