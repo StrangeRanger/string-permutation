@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>string_permutation : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header navbar-brand">
+          string_permutation
+          <a href="index.html">API Documentation</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="string_permutation.html">string_permutation</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div>This project is designed to take a given word or string of characters and create every
+possible permutation.</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id1">
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="string_permutation.RenameFile.html">RenameFile</a></code></td>
+    <td><span>Used to easily break while loop, to re-ask user to enter a filename.</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#RED">RED</a></code></td>
+    <td><span>Change output text to red.</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#CYAN">CYAN</a></code></td>
+    <td><span>Change output text to cyan.</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#DEFCLR">DEFCLR</a></code></td>
+    <td><span>Reset output text color.</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#INVALID_INPUT_NUMBERS">INVALID_INPUT_NUMBERS</a></code></td>
+    <td><span>A non-number was provided to the input.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#clean_exit">clean_exit</a></code></td>
+    <td><span>Exit program cleanly. Also used by signal_handler().</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#signal_handler">signal_handler</a></code></td>
+    <td><span>Handle SIGINT and SIGTSTP signals, and cleanly exits program.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#factorial">factorial</a></code></td>
+    <td><span>Factorial function that allows for both 'n!' and 'n!/(n-r)!'.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#convert_size">convert_size</a></code></td>
+    <td><span>Convert file sizes from bytes to easy/human readable format (1024 bytes --&gt; 1KiB).</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#main">main</a></code></td>
+    <td><span>Perform the permutations, displays either the size of 'file_name' or the total number of permutations, etc.</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#permutation_type">permutation_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#save_or_display">save_or_display</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#file_name">file_name</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#option">option</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#write_file">write_file</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#string">string</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#counter_string">counter_string</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#output_string_length">output_string_length</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#execution">execution</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basevariable">
+  
+  <a name="string_permutation.RED">
+    
+  </a>
+  <a name="RED">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">RED</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Change output text to red.</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="string_permutation.CYAN">
+    
+  </a>
+  <a name="CYAN">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">CYAN</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Change output text to cyan.</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="string_permutation.DEFCLR">
+    
+  </a>
+  <a name="DEFCLR">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">DEFCLR</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Reset output text color.</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="string_permutation.INVALID_INPUT_NUMBERS">
+    
+  </a>
+  <a name="INVALID_INPUT_NUMBERS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">INVALID_INPUT_NUMBERS</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>A non-number was provided to the input.</div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="string_permutation.clean_exit">
+    
+  </a>
+  <a name="clean_exit">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">clean_exit</span>(signal_handler_used=False):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Exit program cleanly. Also used by signal_handler().<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">signal_handler_used</td><td>sing True when called by signal_handler(). (type: <code>bool</code>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="string_permutation.signal_handler">
+    
+  </a>
+  <a name="signal_handler">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">signal_handler</span>(signal_num, frame):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Handle SIGINT and SIGTSTP signals, and cleanly exits program.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">signal_num</td><td>Signal number.</td></tr><tr><td></td><td class="fieldArg">frame</td><td>Interrupted stack frame.</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="string_permutation.factorial">
+    
+  </a>
+  <a name="factorial">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">factorial</span>(n, stop):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Factorial function that allows for both 'n!' and 'n!/(n-r)!'.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">n</td><td>The number of characters in 'string'. (type: <code>int</code>)</td></tr><tr><td></td><td class="fieldArg">stop</td><td>The number used to stop factorial when n is equivalent. (type: <code>int</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">n * (n - 1) (type: <code>int</code>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="string_permutation.convert_size">
+    
+  </a>
+  <a name="convert_size">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">convert_size</span>(byte_size, byte_conv_size, os, suffix='B'):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Convert file sizes from bytes to easy/human readable format (1024 bytes --&gt; 1KiB).<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">byte_size</td><td>Size of file in bytes. (type: <code>int</code>)</td></tr><tr><td></td><td class="fieldArg">byte_conv_size</td><td>The number of [unit type] to make a [unit type]. (type: <code>int</code>)</td></tr><tr><td></td><td class="fieldArg">os</td><td>Operating System (1 = Windows; 0 = Other). (type: <code>int</code>)</td></tr><tr><td></td><td class="fieldArg">suffix</td><td>The suffix (bytes) attached to the end of each unit. (type: <code>str</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">File size in a human readable format. (type: <code>str</code>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="string_permutation.main">
+    
+  </a>
+  <a name="main">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">main</span>(permutation_equation):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Perform the permutations, displays either the size of 'file_name' or the total
+number of permutations, etc.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">permutation_equation</td><td>The equation used to get the total number of
+permutations. (type: <code>int</code>)</td></tr></table></div>
+  </div>
+</div><div class="basevariable">
+  
+  <a name="string_permutation.permutation_type">
+    
+  </a>
+  <a name="permutation_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">permutation_type</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basevariable">
+  
+  <a name="string_permutation.save_or_display">
+    
+  </a>
+  <a name="save_or_display">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">save_or_display</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basevariable">
+  
+  <a name="string_permutation.file_name">
+    
+  </a>
+  <a name="file_name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">file_name</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basevariable">
+  
+  <a name="string_permutation.option">
+    
+  </a>
+  <a name="option">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">option</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basevariable">
+  
+  <a name="string_permutation.write_file">
+    
+  </a>
+  <a name="write_file">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">write_file</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basevariable">
+  
+  <a name="string_permutation.string">
+    
+  </a>
+  <a name="string">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">string</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basevariable">
+  
+  <a name="string_permutation.counter_string">
+    
+  </a>
+  <a name="counter_string">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">counter_string</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basevariable">
+  
+  <a name="string_permutation.output_string_length">
+    
+  </a>
+  <a name="output_string_length">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">output_string_length</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basevariable">
+  
+  <a name="string_permutation.execution">
+    
+  </a>
+  <a name="execution">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">execution</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for string_permutation, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 21.2.2 at 2021-05-27 23:09:10.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
