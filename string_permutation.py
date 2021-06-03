@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 #
-# Comment key for '[letter].[number].'
-# ------------------------------------
-# A.1. - Performs permutations and saves them to 'file_name'.
-# B.1. - If the user inputs anything other than an integer.
-# C.1. - Blank line between next user input prompt.
+# Comment key for '[letter].[number].':
+#   A.1. - Performs permutations and saves them to 'file_name'.
+#   B.1. - If the user inputs anything other than an integer.
+#   C.1. - Blank line between next user input prompt.
 #
 ########################################################################################
 """
