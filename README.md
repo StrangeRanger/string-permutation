@@ -1,6 +1,6 @@
 # String Permutation
 
-[![Project Tracker](https://img.shields.io/badge/repo%20status-Project%20Tracker-lightgrey)](https://randomserver.xyz/project-tracker.html)
+[![Project Tracker](https://img.shields.io/badge/repo%20status-Project%20Tracker-lightgrey)](https://randomserver.xyz/project-tracker.html#string-permutation)
 ![Platform](https://img.shields.io/badge/platform-macOS|Linux|Windows-lightgrey)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![CodeFactor](https://www.codefactor.io/repository/github/strangeranger/string-permutation/badge)](https://www.codefactor.io/repository/github/strangeranger/string-permutation)
