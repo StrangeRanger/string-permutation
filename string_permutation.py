@@ -73,7 +73,7 @@ except ModuleNotFoundError:
 ########[ General Functions ]###########################################################
 
 
-def clean_exit(signal_handler_used = False):
+def clean_exit(signal_handler_used=False):
     """Exit program cleanly. Also used by signal_handler().
 
     Parameters
@@ -133,7 +133,7 @@ def factorial(n: int, stop: int) -> int:
     return n * factorial(n - 1, stop)
 
 
-def convert_size(byte_size, byte_conv_size, os, suffix = "B"):
+def convert_size(byte_size, byte_conv_size, os, suffix="B"):
     """Convert file sizes from bytes to easy/human readable format (1024 bytes --> 1KiB).
 
     Parameters
