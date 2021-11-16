@@ -73,10 +73,13 @@ except ModuleNotFoundError:
 ########[ General Functions ]###########################################################
 
 
-def clean_exit(signal_handler_used: bool = False) -> None:
+def clean_exit(signal_handler_used = False):
     """Exit program cleanly. Also used by signal_handler().
 
-    :param signal_handler_used: sing True when called by signal_handler().
+    Parameters
+    ----------
+    signal_handler_used : bool, optional
+        Signal True when called by signal_handler(), else False.
     """
     if signal_handler_used:
         print("\n\nProgram forcefully stopped")
@@ -113,25 +116,41 @@ def signal_handler(signal_num, frame) -> None:
 def factorial(n: int, stop: int) -> int:
     """Factorial function that allows for both 'n!' and 'n!/(n-r)!'.
 
-    :param n:    The number of characters in 'string'.
-    :param stop: The number used to stop factorial when n is equivalent.
-    :return:     n * (n - 1)
+    Parameters
+    ----------
+    n : int
+        The number of characters in 'string'.
+    stop : int
+        The number used to stop factorial when n is equivalent.
+
+    Returns
+    -------
+    int
+        n * (n - 1)
     """
     if n == stop:
         return 1
     return n * factorial(n - 1, stop)
 
 
-def convert_size(
-    byte_size: int, byte_conv_size: int, os: int, suffix: str = "B"
-) -> str:
+def convert_size(byte_size, byte_conv_size, os, suffix = "B"):
     """Convert file sizes from bytes to easy/human readable format (1024 bytes --> 1KiB).
 
-    :param byte_size:      Size of file in bytes.
-    :param byte_conv_size: The number of [unit type] to make a [unit type].
-    :param os:             Operating System (1 = Windows; 0 = Other).
-    :param suffix:         The suffix (bytes) attached to the end of each unit.
-    :return:               File size in a human readable format.
+    Parameters
+    ----------
+    byte_size : int
+        Size of the file in bytes.
+    byte_conv_size : int
+        The number of [unit] to make a [unit] (i.e. KiB -> MiB).
+    os : int
+        Operating System (1 = Windows; 0 = Other).
+    suffix : str
+        The suffix (bytes) attached to the end of each unit.
+
+    Returns
+    -------
+    str
+        File size in a human readable format.
     """
     # If OS is Windows...
     if os == 1:
@@ -151,12 +170,14 @@ def convert_size(
 ########[ Main function ]###############################################################
 
 
-def main(permutation_equation: int) -> None:
+def main(permutation_equation):
     """Perform the permutations, displays either the size of 'file_name' or the total
     number of permutations, etc.
 
-    :param permutation_equation: The equation used to get the total number of
-                                 permutations.
+    Parameters
+    ----------
+    permutation_equation : int
+        The equation used to get the total number of permutations.
     """
     # If permutations are being printed to the screen...
     if save_or_display == 1:
