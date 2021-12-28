@@ -3,7 +3,7 @@
 [![Project Tracker](https://img.shields.io/badge/repo%20status-Project%20Tracker-lightgrey)](https://randomserver.xyz/project-tracker.html#string-permutation)
 ![Platform](https://img.shields.io/badge/platform-macOS|Linux|Windows-lightgrey)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![CodeFactor](https://www.codefactor.io/repository/github/strangeranger/string-permutation/badge)](https://www.codefactor.io/repository/github/strangeranger/string-permutation)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/50debbed985345b289cd6ff0d1fd0f76)](https://www.codacy.com/gh/StrangeRanger/string-permutation/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=StrangeRanger/string-permutation&amp;utm_campaign=Badge_Grade)
 
 This project is designed to take a given word or string of characters and create every possible permutation.
 
