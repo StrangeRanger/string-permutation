@@ -101,11 +101,15 @@ def clean_exit(signal_handler_used=False):
     exit(0)
 
 
-def signal_handler(signal_num, frame) -> None:
+def signal_handler(signal_num, frame):
     """Handle SIGINT and SIGTSTP signals, and cleanly exits program.
 
-    :param signal_num: Signal number.
-    :param frame:      Interrupted stack frame.
+    Parameters
+    ----------
+    signal_num
+        Signal number.
+    frame
+        Interrupted stack frame.
     """
     clean_exit(signal_handler_used=True)
 
@@ -113,7 +117,7 @@ def signal_handler(signal_num, frame) -> None:
 ########[ Functions used explicitly by 'main(permutation_equation)' ]###################
 
 
-def factorial(n: int, stop: int) -> int:
+def factorial(n, stop):
     """Factorial function that allows for both 'n!' and 'n!/(n-r)!'.
 
     Parameters
