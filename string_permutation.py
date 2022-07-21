@@ -13,13 +13,12 @@ possible permutation.
 ####[ Imports ]#########################################################################
 
 
-from itertools import permutations, product
-from os import linesep, stat, remove, path, rename
-from sys import exit
-from collections import Counter
-from platform import system
 import signal
-
+from collections import Counter
+from itertools import permutations, product
+from os import linesep, path, remove, rename, stat
+from platform import system
+from sys import exit
 
 ####[ Class creation ]##################################################################
 
