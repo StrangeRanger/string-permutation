@@ -277,8 +277,8 @@ while True:
     try:
         save_or_display = int(
             input(
-                "Would you like the permutations to be: [1/2]\n
-                "1) displayed on the screen\n
+                "Would you like the permutations to be: [1/2]\n"
+                "1) displayed on the screen\n"
                 "2) saved to a file\n"
             )
         )
