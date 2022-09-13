@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# Comment key for '[letter].[number].':
+# Comment key:
 #   A.1. - Performs permutations and saves them to 'file_name'.
 #   B.1. - If the user inputs anything other than an integer.
 #   C.1. - Blank line between next user input prompt.
@@ -20,6 +20,7 @@ from os import linesep, path, remove, rename, stat
 from platform import system
 from sys import exit
 
+
 ####[ Class creation ]##################################################################
 
 
@@ -34,11 +35,9 @@ RED = "\033[1;31m"
 """Change output text to red."""
 CYAN = "\033[0;36m"
 """Change output text to cyan."""
-DEFCLR = "\033[0m"
+NC = "\033[0m"
 """Reset output text color."""
-INVALID_INPUT_NUMBERS = "{}Invalid input: only numbers are accepted as input{}".format(
-    RED, DEFCLR
-)
+INVALID_INPUT_NUMBERS = f"{RED}Invalid input: only numbers are accepted as input{NC}"
 """A non-number was provided to the input."""
 
 
@@ -62,14 +61,14 @@ try:
     from tqdm import tqdm
 except ModuleNotFoundError:
     print(
-        "{}Failed to import tqdm. Make sure that it's installed before executing this"
-        "script again.{}".format(RED, DEFCLR)
+        f"{RED}Failed to import tqdm. Make sure that it's installed before executing"
+        f" this script again.{NC}"
     )
     exit(1)
 
 
 ####[ Functions ]#######################################################################
-########[ General Functions ]###########################################################
+####[[ General Functions ]]#############################################################
 
 
 def clean_exit(signal_handler_used=False):
@@ -89,7 +88,7 @@ def clean_exit(signal_handler_used=False):
         # If 'file_name' exists and contains no data...
         if stat(file_name).st_size == 0:
             print("Cleaning up...")
-            print("  Removing '{}'...".format(file_name))
+            print(f"  Removing '{file_name}'...")
             remove(file_name)
     except NameError:
         pass
@@ -113,7 +112,7 @@ def signal_handler(signal_num, frame):
     clean_exit(signal_handler_used=True)
 
 
-########[ Functions used explicitly by 'main(permutation_equation)' ]###################
+####[[ Functions used explicitly by 'main(permutation_equation)' ]]#####################
 
 
 def factorial(n, stop):
@@ -164,13 +163,13 @@ def convert_size(byte_size, byte_conv_size, os, suffix="B"):
 
     for unit in units:
         if byte_size < byte_conv_size:
-            return "{}{}{}".format(round(byte_size, 2), unit, suffix)
+            return f"{round(byte_size, 2)}{unit}{suffix}"
         byte_size /= byte_conv_size
 
-    return "{}{}{}".format(byte_size, "Y", suffix)
+    return f"{byte_size}Y{suffix}"
 
 
-########[ Main function ]###############################################################
+####[[ Main function ]]#################################################################
 
 
 def main(permutation_equation):
@@ -185,10 +184,11 @@ def main(permutation_equation):
     # If permutations are being printed to the screen...
     if save_or_display == 1:
         print(
-            "The total number of permutations that will be printed to the  screen is "
-            "{}. ".format(permutation_equation),
+            "The total number of permutations that will be printed to the screen is"
+            f" {permutation_equation}. ",
             end="",
         )
+
         while True:
             response = str(input("Would you like to continue? [y/n] ").lower())
             if response in ("y", "yes"):
@@ -200,25 +200,23 @@ def main(permutation_equation):
             if response in ("n", "no"):
                 clean_exit()
 
-            print("{}Invalid input{}".format(RED, DEFCLR))
+            print(f"{RED}Invalid input{NC}")
     # If permutations are to be saved to a file...
     else:
         if system() == "Windows":
             # 4 extra bytes added to account for '\r\n' at the end of each line.
             file_size = permutation_equation * (output_string_length + 4)
             print(
-                "The size of '{}' will be approximately {}. ".format(
-                    file_name, convert_size(file_size, 1024, 1)
-                ),
+                f"The size of '{file_name}' will be approximately"
+                f" {convert_size(file_size, 1024, 1)}. ",
                 end="",
             )
         else:
             # 2 extra bytes added to account for '\n' at the end of each line.
             file_size = permutation_equation * (output_string_length + 2)
             print(
-                "The size of '{}' will be approximately {}. ".format(
-                    file_name, convert_size(file_size, 1000, 0)
-                ),
+                f"The size of '{file_name}' will be approximately"
+                f" {convert_size(file_size, 1000, 0)}. ",
                 end="",
             )
 
@@ -241,7 +239,7 @@ def main(permutation_equation):
             elif response in ("n", "no"):
                 clean_exit()
             else:
-                print("{}Invalid input{}".format(RED, DEFCLR))
+                print(f"{RED}Invalid input{NC}")
 
 
 ####[ Initializing signal handlers ]####################################################
@@ -260,8 +258,9 @@ while True:
     try:
         permutation_type = int(
             input(
-                "What type of permutation do you want to perform? [1/2]\n1) Permutation"
-                " with partial or no repetition \n2) Permutation with repetition\n"
+                "What type of permutation do you want to perform? [1/2]"
+                "\n1) Permutation with partial or no repetition"
+                "\n2) Permutation with repetition\n"
             )
         )
         if permutation_type in (1, 2):
@@ -269,9 +268,7 @@ while True:
             break
 
         print(
-            "{}Invalid number: only numbers '1' and '2' are accepted as  input{}".format(
-                RED, DEFCLR
-            )
+            f"{RED}Invalid number: only numbers '1' and '2' are accepted as  input{NC}"
         )
     # B.1.
     except ValueError:
@@ -307,9 +304,8 @@ while True:
                     # If input is left blank...
                     if not file_name:
                         print(
-                            "{}Invalid file name: blank file names are not accepted{}".format(
-                                RED, DEFCLR
-                            )
+                            f"{RED}Invalid file name: blank file names are not accepted"
+                            f"{NC}"
                         )
                         continue
 
@@ -317,47 +313,44 @@ while True:
                     if path.exists(file_name):
                         while True:
                             try:
-                                print(
-                                    "{}'{}' already exists{}".format(
-                                        CYAN, file_name, DEFCLR
-                                    )
-                                )
+                                print(f"{CYAN}'{file_name}' already exists{NC}")
                                 option = int(
                                     input(
-                                        "Would you like to: [1/2/3]\n1) choose a "
-                                        "different file name\n2) overwrite file\n3) "
-                                        "backup and overwrite file (recommended over "
-                                        "option 2)\n4) stop and exit\n"
+                                        "Would you like to: [1/2/3]"
+                                        "\n1) choose a different file name"
+                                        "\n2) overwrite file"
+                                        "\n3) backup and overwrite file"
+                                        "\n4) stop and exit\n"
                                     )
                                 )
 
                                 if option == 1:
                                     raise RenameFile
                                 if option == 2:
-                                    print("Overwriting '{}'...\n".format(file_name))
+                                    print(f"Overwriting '{file_name}'...\n")
                                     break
                                 if option == 3:
-                                    print("Backing up '{}'...".format(file_name))
+                                    print(f"Backing up '{file_name}'...")
                                     # NOTE: Instead of copying the file, it is renamed
                                     #       with '.bak' appended to the end, to prevent
                                     #       any potential "data" loss with the shutil
                                     #       library.
                                     rename(file_name, file_name + ".bak")
-                                    print("Overwriting '{}'...\n".format(file_name))
+                                    print(f"Overwriting '{file_name}'...\n")
                                     break
                                 if option == 4:
                                     clean_exit()
 
                                 print(
-                                    "{}Invalid number: only numbers '1', '2', and '"
-                                    "3' are accepted as input{}".format(RED, DEFCLR)
+                                    f"{RED}Invalid number: only numbers '1', '2', and"
+                                    r" '3' are accepted as input{NC}"
                                 )
                             # B.1.
                             except ValueError:
                                 print(INVALID_INPUT_NUMBERS)
                                 continue
                     else:
-                        print("Creating '{}'...\n".format(file_name))
+                        print(f"Creating '{file_name}'...\n")
                         break
 
                 except RenameFile:
@@ -371,9 +364,7 @@ while True:
             break
 
         print(
-            "{}Invalid number: only numbers '1' and '2' are accepted as  input{}".format(
-                RED, DEFCLR
-            )
+            f"{RED}Invalid number: only numbers '1' and '2' are accepted as  input{NC}"
         )
     # B.1.
     except ValueError:
@@ -385,9 +376,7 @@ while True:
     counter_string = Counter(string)
     # If variable contains characters other than spaces...
     if string.strip(" ") == "":
-        print(
-            "{}Invalid input: blank/empty input is not accepted{}".format(RED, DEFCLR)
-        )
+        print(f"{RED}Invalid input: blank/empty input is not accepted{NC}")
         continue
     break
 
@@ -398,8 +387,8 @@ if permutation_type == 1:
     for k, v in counter_string.items():
         if v >= 2:
             print(
-                "{}Your input string has duplicate characters, which will result in "
-                "duplicate permutations{}".format(CYAN, DEFCLR)
+                f"{CYAN}Your input string has duplicate characters, which will result"
+                f" in duplicate permutations{NC}"
             )
             while True:
                 try:
@@ -415,17 +404,16 @@ if permutation_type == 1:
                     if option == 2:
                         string = "".join(set(string))
                         print(
-                            "Removing duplicate characters...\nNew input string: {}".format(
-                                string
-                            )
+                            "Removing duplicate characters..."
+                            f"\nNew input string: {string}"
                         )
                         break
                     if option == 3:
                         clean_exit()
 
                     print(
-                        "{}Invalid number: only numbers '1', '2', and '3' are accepted "
-                        "as input{}".format(RED, DEFCLR)
+                        f"{RED}Invalid number: only numbers '1', '2', and '3' are"
+                        f" accepted as input{RED}"
                     )
                     continue
                 except ValueError:
@@ -440,9 +428,7 @@ else:
     for k, v in counter_string.items():
         if v >= 2:
             string = "".join(set(string))
-            print(
-                "Removing duplicate characters...\nNew input string: {}".format(string)
-            )
+            print(f"Removing duplicate characters...\nNew input string: {string}")
             break
 print("")  # C.1.
 
@@ -455,20 +441,12 @@ while True:
             )
         )
         if output_string_length <= 0:
-            print(
-                "{}Invalid number: only numbers greater than 0 are accepted{}".format(
-                    RED, DEFCLR
-                )
-            )
+            print(f"{RED}Invalid number: only numbers greater than 0 are accepted{NC}")
         elif permutation_type == 1 and output_string_length > len(string):
             print(
-                "{}Invalid number: numbers greater than the length of the input string "
-                "({} {} long) are not accepted{}".format(
-                    RED,
-                    len(string),
-                    "characters" if len(string) >= 2 else "character",
-                    DEFCLR,
-                )
+                f"{RED}Invalid number: numbers greater than the length of the input"
+                f" string ({len(string)} character{'s' if len(string) >= 2 else ''}"
+                f" long) are not accepted{NC}"
             )
         else:
             print("")  # C.1.
