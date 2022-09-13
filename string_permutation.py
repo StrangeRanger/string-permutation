@@ -20,7 +20,6 @@ from os import linesep, path, remove, rename, stat
 from platform import system
 from sys import exit
 
-
 ####[ Class creation ]##################################################################
 
 
