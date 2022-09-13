@@ -136,3 +136,5 @@ dmypy.json
 
 # Other
 TODO
+Pipfile
+Pipfile.lock
