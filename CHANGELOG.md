@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 
 - Replaced `.format()` with `f-string`.
+- Updated tdqm requirements to version `4.64.1`.
 
 ## [1.1.7] - 2021-05-27
 
