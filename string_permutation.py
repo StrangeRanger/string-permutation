@@ -403,7 +403,7 @@ if permutation_type == 1:
                     if option == 1:
                         break
                     if option == 2:
-                        print("Removing duplicate characters..."
+                        print("Removing duplicate characters...")
                         string = "".join(set(string))
                         print(f"New input string: {string}")
                         break
@@ -426,7 +426,7 @@ else:
     ## immediately removed.
     for k, v in counter_string.items():
         if v >= 2:
-            print("Removing duplicate characters..."
+            print("Removing duplicate characters...")
             string = "".join(set(string))
             print(f"New input string: {string}")
             break
