@@ -12,7 +12,6 @@ possible permutation.
 """
 ####[ Imports ]#########################################################################
 
-
 import signal
 from collections import Counter
 from itertools import permutations, product
@@ -20,8 +19,7 @@ from os import linesep, path, remove, rename, stat
 from platform import system
 from sys import exit
 
-
-####[ Class creation ]##################################################################
+####[ Class Creation ]##################################################################
 
 
 class RenameFile(Exception):
@@ -41,7 +39,7 @@ INVALID_INPUT_NUMBERS = f"{RED}Invalid input: only numbers are accepted as input
 """A non-number was provided to the input."""
 
 
-####[ Pip imports ]#####################################################################
+####[ Pip Imports ]#####################################################################
 
 
 ## Tries to import init from colorama to allow color output on Windows.
@@ -52,17 +50,18 @@ if system() == "Windows":
         init()
     except ModuleNotFoundError:
         print(
-            "-----------------------------------------------------------------------------------------------\n"
-            "Colorama has not been installed, which will result in ANSI text appearing in some of the output\n"
-            "-----------------------------------------------------------------------------------------------\n"
+            "------------------------------------------------------------------------------------\n"
+            "Colorama has not been installed, which will result in ANSI text appearing in some of\n"
+            "the output_string_length\n"
+            "------------------------------------------------------------------------------------\n"
         )
 
 try:
     from tqdm import tqdm
 except ModuleNotFoundError:
     print(
-        f"{RED}Failed to import tqdm. Make sure that it's installed before executing"
-        f" this script again.{NC}"
+        f"{RED}Failed to import tqdm.\n"
+        f"{CYAN}Make sure that it's installed before executing this script again.{NC}"
     )
     exit(1)
 
@@ -77,7 +76,7 @@ def clean_exit(signal_handler_used=False):
     Parameters
     ----------
     signal_handler_used : bool, optional
-        Signal True when called by signal_handler(), else False.
+        True when called by signal_handler(), else False.
     """
     if signal_handler_used:
         print("\n\nProgram forcefully stopped")
@@ -258,9 +257,9 @@ while True:
     try:
         permutation_type = int(
             input(
-                "What type of permutation do you want to perform? [1/2]"
-                "\n1) Permutation with partial or no repetition"
-                "\n2) Permutation with repetition\n"
+                "What type of permutation do you want to perform? [1/2]\n"
+                "1) Permutation with partial or no repetition\n"
+                "2) Permutation with repetition\n"
             )
         )
         if permutation_type in (1, 2):
@@ -268,7 +267,7 @@ while True:
             break
 
         print(
-            f"{RED}Invalid number: only numbers '1' and '2' are accepted as  input{NC}"
+            f"{RED}Invalid number: only numbers '1' and '2' are accepted as input{NC}"
         )
     # B.1.
     except ValueError:
@@ -278,8 +277,9 @@ while True:
     try:
         save_or_display = int(
             input(
-                "Would you like the permutations to be: [1/2]\n1)  displayed on the "
-                "screen\n2) saved to a file\n"
+                "Would you like the permutations to be: [1/2]\n
+                "1) displayed on the screen\n
+                "2) saved to a file\n"
             )
         )
         # If permutations are being printed to the screen...
@@ -296,8 +296,8 @@ while True:
                     #          when created.
                     file_name = str(
                         input(
-                            "Enter the name of the file that the  permutations will be "
-                            "saved to: "
+                            "Enter the name of the file that the  permutations will be"
+                            " saved to: "
                         ).strip(" ")
                     )
 
@@ -316,11 +316,11 @@ while True:
                                 print(f"{CYAN}'{file_name}' already exists{NC}")
                                 option = int(
                                     input(
-                                        "Would you like to: [1/2/3]"
-                                        "\n1) choose a different file name"
-                                        "\n2) overwrite file"
-                                        "\n3) backup and overwrite file"
-                                        "\n4) stop and exit\n"
+                                        "Would you like to: [1/2/3]\n"
+                                        "1) choose a different file name\n"
+                                        "2) overwrite file\n"
+                                        "3) backup and overwrite file\n"
+                                        "4) stop and exit\n"
                                     )
                                 )
 
@@ -343,7 +343,7 @@ while True:
 
                                 print(
                                     f"{RED}Invalid number: only numbers '1', '2', and"
-                                    r" '3' are accepted as input{NC}"
+                                    f" '3' are accepted as input{NC}"
                                 )
                             # B.1.
                             except ValueError:
@@ -394,19 +394,18 @@ if permutation_type == 1:
                 try:
                     option = int(
                         input(
-                            "Would you like to: [1/2/3]\n1) continue with duplicate "
-                            "outputs\n2) remove duplicate characters from string\n3) "
-                            "stop and exit\n"
+                            "Would you like to: [1/2/3]\n"
+                            "1) continue with duplicate outputs\n"
+                            "2) remove duplicate characters from string\n"
+                            "3) stop and exit\n"
                         )
                     )
                     if option == 1:
                         break
                     if option == 2:
+                        print("Removing duplicate characters..."
                         string = "".join(set(string))
-                        print(
-                            "Removing duplicate characters..."
-                            f"\nNew input string: {string}"
-                        )
+                        print(f"New input string: {string}")
                         break
                     if option == 3:
                         clean_exit()
@@ -427,9 +426,11 @@ else:
     ## immediately removed.
     for k, v in counter_string.items():
         if v >= 2:
+            print("Removing duplicate characters..."
             string = "".join(set(string))
-            print(f"Removing duplicate characters...\nNew input string: {string}")
+            print(f"New input string: {string}")
             break
+
 print("")  # C.1.
 
 while True:
