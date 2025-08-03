@@ -7,6 +7,10 @@ This project is designed to take a given word or string of characters and create
 
 While this isn't a huge project, there are a few things that might need explaining or would be good to know. [Click here](https://github.com/StrangeRanger/string-permutation/wiki) to take a look at the wiki.
 
+## Demo
+
+[![asciicast](https://asciinema.hthompson.dev/a/8.svg)](https://asciinema.hthompson.dev/a/8)
+
 ## Features
 
 - **Two permutation types:**
@@ -27,7 +31,6 @@ While this isn't a huge project, there are a few things that might need explaini
 ### Prerequisites
 
 - **Python** 3.7 or higher
-- **Dependencies:** `colorama` and `tqdm` (see Installation section for setup instructions)
 - **Optional:** `pipenv` for virtual environment management (recommended)
 
 ### Installation
@@ -67,19 +70,6 @@ python3 string_permutation.py
 ```bash
 pipenv run python string_permutation.py
 ```
-
-## Example
-
-When you run the program, you'll be prompted to:
-
-1. Choose permutation type (with or without repetition)
-2. Choose output method (display on screen or save to file)
-3. Enter your input string
-4. Specify the length of each permutation
-
-For example, with input "ABC" and length 2, you might get:
-- Permutation without repetition: AB, AC, BA, BC, CA, CB
-- Permutation with repetition: AA, AB, AC, BA, BB, BC, CA, CB, CC
 
 ## License
 
