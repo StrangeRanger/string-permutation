@@ -30,8 +30,8 @@ While this isn't a huge project, there are a few things that might need explaini
 
 ### Prerequisites
 
-- **Python** 3.7 or higher
-- **Optional:** `pipenv` for virtual environment management (recommended)
+- **Python**: Version 3.7 or higher
+- **pipenv**: For dependency management (optional, but recommended)
 
 ### Installation
 
