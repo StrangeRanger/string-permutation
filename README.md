@@ -9,7 +9,7 @@ While this isn't a huge project, there are a few things that might need explaini
 
 ## Demo
 
-[![asciicast](https://asciinema.hthompson.dev/a/8.svg)](https://asciinema.hthompson.dev/a/8)
+[![asciicast](https://asciinema.org/a/827091.svg)](https://asciinema.org/a/827091)
 
 ## Features
 
